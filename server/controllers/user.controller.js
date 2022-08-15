@@ -5,10 +5,22 @@ const secret = process.env.SECRETE
 
 
 
-module.exports.createUser =  (req, res) => {
-  User.create(req.body)
-  .then((User) => res.json(User))
-  .catch((err) => res.json(err));
+module.exports.createUser = async (req, res) => {
+  try {
+    const user = await User.create(req.body)
+    const userToken = jwt.sign(
+      {
+        id: user._id,
+        firtName: user.firstName,
+        lastName: user.lastName
+      }, secret
+    )
+    res.json({log: 'created new user', userToken})
+  
+}
+  catch (err) {
+    res.json(err);
+  }
 };
 
 
