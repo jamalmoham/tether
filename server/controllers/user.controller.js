@@ -1,40 +1,39 @@
 const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
-
-
-// module.exports.registerNewUser = async (req, res) => {
-//   try{
-//     const user = new User(req.body);
-//     const newUser = await user.save();
-    
-//     const userToken = jwt.sign(
-//       {
-//         _id : newUser.id,
-//         firstName
-//       }
-//     )
-//   }
-// }
+const secret = process.env.SECRETE
 
 
 
-module.exports.index = (request, response) => {
-  response.json({
-    message: "Hello World",
-  });
+module.exports.createUser =  (req, res) => {
+  User.create(req.body)
+  .then((User) => res.json(User))
+  .catch((err) => res.json(err));
 };
 
-module.exports.createUser = (request, response) => {
-  User.create(request.body)
-    .then((User) => response.json(User))
-    .catch((err) => response.json(err));
-};
 
-// register: (req, res) => {
-//   User.create(req.body)
-//     .then((user) => {
-//       res.json({ msg: "success!", user: user });
-//     })
-//     .catch((err) => res.json(err));
-// };
+module.exports.login = async (req, res) => {
+  const user = await User.findOne({email: req.body.email})
+  const password = req.body.password
+  if(!user || !password){
+    return res.json({log: 'invalid email/password'})
+  }
+  else{
+    const pw = await bcrypt.compare(req.body.password, user.password)
+  if(!pw){
+      return res.json({log: 'invalid email/password'})
+    }
+    const userToken = jwt.sign(
+      {
+        id: user._id,
+        firtName: user.firstName,
+        lastName: user.lastName
+      }, secret
+    )
+    return res.json({log: 'login success', userToken})
+}}
+
+
+  module.exports.logout = (req, res) => {
+    res.clearCookie("userToken").json({ message: "Logout successfull" });
+  };
