@@ -1,4 +1,5 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -12,19 +13,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-
-interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window?: () => Window;
-}
+import { Card } from "react-bootstrap";
+// import tether from "client/src/Assets/tether1.png";
 
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact"];
+var tether = require("file:///Users/rod/Desktop/Bootcamp/Tether/client/src/Assets/tether1.png");
 
-export default function DrawerAppBar(props: Props) {
+function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -34,8 +30,8 @@ export default function DrawerAppBar(props: Props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+      <Typography variant="h6" sx={{ my: 4 }}>
+        Tether
       </Typography>
       <Divider />
       <List>
@@ -62,8 +58,10 @@ export default function DrawerAppBar(props: Props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ mr: 15, display: { sm: "" } }}
           >
+            <img src={tether.default} alt="logo" />
+
             <MenuIcon />
           </IconButton>
           <Typography
@@ -71,7 +69,7 @@ export default function DrawerAppBar(props: Props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            MUI
+            Try Tether
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
@@ -104,8 +102,10 @@ export default function DrawerAppBar(props: Props) {
       </Box>
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
-        <Typography>Try Tether Today</Typography>
+        <Typography></Typography>
       </Box>
     </Box>
   );
 }
+
+export default DrawerAppBar;
