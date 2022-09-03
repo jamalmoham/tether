@@ -11,7 +11,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 require("./config/mongoose.config");
-require("./routes/user.routes")(app);
+require("./routes/highUser.routes")(app);
+require("./routes/collegeUser.routes")(app);
 
 app.listen(8000, () => {
   console.log("Listening at Port 8000");

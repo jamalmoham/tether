@@ -1,4 +1,4 @@
-const User = require("../models/user.model");
+const User = require("../models/highUser.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 const secret = process.env.SECRETE
@@ -19,7 +19,7 @@ module.exports.createUser = async (req, res) => {
   
 }
   catch (err) {
-    res.json(err);
+    res.json({message: 'Email is associated with an account', error: err});
   }
 };
 
@@ -49,3 +49,15 @@ module.exports.login = async (req, res) => {
   module.exports.logout = (req, res) => {
     res.clearCookie("userToken").json({ message: "Logout successfull" });
   };
+
+  module.exports.getAll = (req, res) =>{
+    User.find()
+    .then((allUsers) => {
+      res.json({users: allUsers})
+      console.log(allUsers)
+  })
+  .catch((err) => {
+    res.json({error: err})
+    console.log(err)
+  })
+  }
