@@ -1,14 +1,26 @@
-const User = require("../models/user.model");
+const User = require("../models/highUser.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 const secret = process.env.SECRETE
 
 
 
-module.exports.createUser =  (req, res) => {
-  User.create(req.body)
-  .then((User) => res.json(User))
-  .catch((err) => res.json(err));
+module.exports.createUser = async (req, res) => {
+  try {
+    const user = await User.create(req.body)
+    const userToken = jwt.sign(
+      {
+        id: user._id,
+        firtName: user.firstName,
+        lastName: user.lastName
+      }, secret
+    )
+    res.json({log: 'created new user', userToken})
+  
+}
+  catch (err) {
+    res.json({message: 'Email is associated with an account', error: err});
+  }
 };
 
 
@@ -37,3 +49,15 @@ module.exports.login = async (req, res) => {
   module.exports.logout = (req, res) => {
     res.clearCookie("userToken").json({ message: "Logout successfull" });
   };
+
+  module.exports.getAll = (req, res) =>{
+    User.find()
+    .then((allUsers) => {
+      res.json({users: allUsers})
+      console.log(allUsers)
+  })
+  .catch((err) => {
+    res.json({error: err})
+    console.log(err)
+  })
+  }

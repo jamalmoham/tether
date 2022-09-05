@@ -18,12 +18,11 @@ import { Card } from "react-bootstrap";
 
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact"];
-var tether = require("file:///Users/rod/Desktop/Bootcamp/Tether/client/src/Assets/tether1.png");
+var tether = require("../Assets/tether1.png");
 
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -60,7 +59,7 @@ function DrawerAppBar(props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 15, display: { sm: "" } }}
           >
-            <img src={tether.default} alt="logo" />
+            <img src={tether} alt="logo" height='80px'/>
 
             <MenuIcon />
           </IconButton>
@@ -78,7 +77,7 @@ function DrawerAppBar(props) {
               </Button>
             ))}
           </Box>
-        </Toolbar>
+      </Toolbar>
       </AppBar>
       <Box component="nav">
         <Drawer
@@ -101,7 +100,7 @@ function DrawerAppBar(props) {
         </Drawer>
       </Box>
       <Box component="main" sx={{ p: 3 }}>
-        <Toolbar />
+      {/* <Toolbar /> */}
         <Typography></Typography>
       </Box>
     </Box>
