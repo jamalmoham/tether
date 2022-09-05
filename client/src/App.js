@@ -1,8 +1,9 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 import SignUp from "./components/Signup";
-import DrawerAppBar from "./components/Navbar";
+// import DrawerAppBar from "./components/Navbar";
 import  Nav  from "./components/Nav";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       {/* <DrawerAppBar /> */}
       <Nav/>
       <SignUp />
+      <Footer/>
     </div>
   );
 }
