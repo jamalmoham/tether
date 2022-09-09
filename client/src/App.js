@@ -4,6 +4,8 @@ import SignUp from "./components/Signup";
 // import DrawerAppBar from "./components/Navbar";
 import  Nav  from "./components/Nav";
 import Footer from "./components/Footer";
+import Registration from "./components/Registration";
+import LandingPage from "./components/LandingPage";
 
 
 function App() {
@@ -11,7 +13,9 @@ function App() {
     <div className="App">
       {/* <DrawerAppBar /> */}
       <Nav/>
-      <SignUp />
+      <LandingPage/>
+      {/* <Registration/> */}
+      {/* <SignUp/> */}
       <Footer/>
     </div>
   );
