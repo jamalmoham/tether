@@ -24,14 +24,14 @@ return (
                                 </span>
                             </p>
                             <p class="slate-p">
-                                <span className=''>
+                                <span className='px-1'>
                                     Copyright © 2022 Govest, Inc. All rights reserved.
                                 </span>
                             </p>
                         </div>
                         <div class="slate-column_item slate-col">
                             <p class="slate-p">
-                                <span>Social</span>
+                                <span className='fs-4'>Social</span>
                             </p>
                             <p class="slate-p">
                                 <span></span>
@@ -51,7 +51,7 @@ return (
                                 <span></span>
                             </p>
                             <p class="slate-p">
-                                <span>Contact Us</span>
+                                <span className='fs-4'>Contact Us</span>
                             </p>
                             <p class="slate-p">
                                 <span></span>
@@ -66,7 +66,7 @@ return (
                         
                         <div class="slate-column_item slate-col">
                             <p class="slate-p">
-                                <span>Legal</span>
+                                <span className='fs-4'>Legal</span>
                             </p>
                             <p class="slate-p">
                                 <span></span>
